@@ -29,7 +29,7 @@ async fn main() -> std::io::Result<()> {
     let app_data = web::Data::new(AppState {
         todolist_entries: Mutex::new(vec![]),
     });
-    HttpServer::new(move || App::new().app_data(app_data.clone()).service(index).configure(services::config))
+    HttpServer::new(move || App::new().app_data(app_data.clone()).service(index).configure(services::todolist_config))
         .bind(("127.0.0.1", 8090))?
         .run()
         .await

@@ -1,5 +1,3 @@
-// this will have endpoints
-
 
 use actix_web::{get,post,put , delete,web,Responder,HttpResponse};
 use crate::{AppState,TodolistEntry}; 
@@ -56,7 +54,7 @@ async fn delete_entry(data:web::Data<AppState>,path:web::Path<i32>)-> impl Respo
   # this is code comment
   fkla
  */
-pub fn config(cfg:&mut web::ServiceConfig){
+pub fn todolist_config(cfg:&mut web::ServiceConfig){
     cfg.service(get_entries)
         .service(crate_entry)
         .service(update_entry)
