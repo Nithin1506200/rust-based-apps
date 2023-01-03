@@ -3,7 +3,7 @@ use std::fs;
 use std::io;
 use text_to_png::TextRenderer;
 fn get_str_ascii(intent: u8) -> &'static str {
-    let index = intent / 32;
+    let index = intent / 32; // 8
     let ascii = [" ", "-", "+", "?", "*", "$", "#", "@"];
     // let ascii = ["N", "I", "T", "H", "i", "n", "#", "@"];
     return ascii[index as usize].into();
@@ -18,6 +18,7 @@ fn get_image(dir: &str, scale: u32) -> String {
             if y % (scale * 2) == 0 && x % scale == 2 {
                 let pix = img.get_pixel(x, y);
                 let mut intent = pix[0] / 3 + pix[1] / 3 + pix[2] / 3;
+                //skip black
                 if pix[3] == 0 {
                     intent = 0;
                 }
